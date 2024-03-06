@@ -17,6 +17,36 @@ const routes = [
     component: loadPage('AboutPage')
   },
   {
+    path: '/details',
+    name: 'Details',
+    component: loadPage('DetailsPage')
+  },
+  {
+    path: '/configuration',
+    name: 'Configuration',
+    component: loadPage('ConfigurationPage')
+  },
+  {
+    path: '/wodetails',
+    name: 'WO Details',
+    component: loadPage('WODetailsPage')
+  },
+  {
+    path: '/memo',
+    name: 'Memo',
+    component: loadPage('MemoPage')
+  },
+  {
+    path: '/general',
+    name: 'General',
+    component: loadPage('GeneralPage')
+  },
+  {
+    path: '/custom',
+    name: 'Custom',
+    component: loadPage('CustomPage')
+  },
+  {
     path: '/account',
     name: 'Account',
     component: loadPage('AccountPage'),
