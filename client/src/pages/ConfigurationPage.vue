@@ -46,6 +46,14 @@
                 <p class="first-heading">UOM</p>
             </div>
         </section>
+        <section class="row">
+            <div v-for="order, index in orders" :key="order.id" class="col-12 order-row" :class="{
+                    'light-gray': index % 2 == 0,
+                    'bg-light': index % 2 == 1
+                }">
+                <p class="order-name"> <i class="mdi mdi-menu-down fs-2 "></i> {{ order.description }}</p>
+            </div>
+        </section>
     </div>
     <OrderModal />
 </template>
@@ -55,13 +63,27 @@
 import { AppState } from '../AppState';
 import { computed, reactive, onMounted } from 'vue';
 import OrderModal from '../components/OrderModal.vue';
+import { logger } from '../utils/Logger.js';
+import Pop from '../utils/Pop.js';
+import { ordersService } from '../services/OrdersService.js';
 
 export default {
     setup() {
-        return {
-            async createOrder() {
+        onMounted(() => {
+            getOrders()
+        })
+        async function getOrders() {
+            try {
+                await ordersService.getOrders()
+            } catch (error) {
+                logger.error(error)
+                Pop.error(error)
 
             }
+        }
+        return {
+            orders: computed(() => AppState.orders)
+
         }
     },
     components: { OrderModal }
@@ -72,6 +94,10 @@ export default {
 <style lang="scss" scoped>
 .main-row {
     background-color: lightgray;
+}
+
+.light-gray {
+    background-color: lightblue;
 }
 
 .active,
