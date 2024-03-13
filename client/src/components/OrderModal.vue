@@ -10,11 +10,12 @@
                     <form @submit.prevent="createOrder()">
                         <div class="mb-3">
                             <label for="description" class="form-label">Description</label>
-                            <input type="text" class="form-control" id="description" aria-describedby="emailHelp"
-                                maxlength="150" required placeholder="Description of Order...">
+                            <input v-model="editable.description" type="text" class="form-control" id="description"
+                                aria-describedby="emailHelp" maxlength="150" required
+                                placeholder="Description of Order...">
 
                         </div>
-                        <div class="mb-3">
+                        <!-- <div class="mb-3">
                             <label for="partNumber" class="form-label">Part Number</label>
                             <input type="text" class="form-control" id="partNumber" aria-describedby="emailHelp"
                                 maxlength="1000" required placeholder="Part Number...">
@@ -37,7 +38,7 @@
                             <input type="text" class="form-control" id="uom" aria-describedby="emailHelp"
                                 maxlength="1000" required placeholder="UOM...">
 
-                        </div>
+                        </div> -->
 
                         <button type="submit" class="btn btn-outline-dark">Submit</button>
                     </form>
@@ -53,11 +54,29 @@
 
 <script>
 import { AppState } from '../AppState';
-import { computed, reactive, onMounted } from 'vue';
+import { computed, reactive, onMounted, ref } from 'vue';
+import { logger } from '../utils/Logger.js';
+import Pop from '../utils/Pop.js';
+import { ordersService } from '../services/OrdersService.js';
+import { Modal } from 'bootstrap';
 export default {
     setup() {
+        const editable = ref({})
         return {
+            orders: computed(() => AppState.orders),
+            editable,
             async createOrder() {
+                try {
+                    const orderData = editable.value
+                    await ordersService.createOrder(orderData)
+                    Pop.success('Order created!')
+                    Modal.getOrCreateInstance('#OrderModal').hide()
+                    editable.value = {}
+                } catch (error) {
+                    logger.error(error)
+                    Pop.error(error)
+
+                }
 
             }
 

@@ -9,22 +9,22 @@
       aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <!-- <div class="collapse navbar-collapse" id="navbarText">
-      <ul class="navbar-nav me-auto">
+    <div class="collapse navbar-collapse" id="navbarText">
+      <!-- <ul class="navbar-nav me-auto">
         <li>
           <router-link :to="{ name: 'About' }" class="btn text-success lighten-30 selectable text-uppercase">
             About
           </router-link>
         </li>
-      </ul>
-      
-      <div>
+      </ul> -->
+
+      <!-- <div>
         <button class="btn text-light" @click="toggleTheme">
           <i class="mdi" :class="theme == 'light' ? 'mdi-weather-sunny' : 'mdi-weather-night'"></i>
         </button>
-      </div>
+      </div> -->
       <Login />
-    </div> -->
+    </div>
   </nav>
 </template>
 
