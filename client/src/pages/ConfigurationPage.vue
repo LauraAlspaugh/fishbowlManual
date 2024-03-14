@@ -47,15 +47,24 @@
             </div>
         </section>
         <section class="row">
-            <div v-for="order, index in orders" :key="order.id" class="col-12 order-row" :class="{
+            <div v-for="order, index in orders" :key="order.id" class="col-12 order-row d-flex justify-content-between"
+                :class="{
                     'light-gray': index % 2 == 0,
                     'bg-light': index % 2 == 1
                 }">
                 <p class="order-name"> <i class="mdi mdi-menu-down fs-2 "></i> {{ order.description }}</p>
+                <i role="button" data-bs-toggle="modal" data-bs-target="#PartModal" class="mdi mdi-plus p-2 fs-5"></i>
             </div>
+            <!-- <div class="col-6 p-2 mt-1">
+                <i class="mdi mdi-delete-outline p-2 fs-5"></i>
+                <i class="mdi mdi-arrow-up p-2 fs-5"></i>
+                <i class="mdi mdi-arrow-down p-2 fs-5"></i>
+                <i class="mdi mdi-cog-outline p-2 fs-5"></i>
+            </div> -->
         </section>
     </div>
     <OrderModal />
+    <PartModal />
 </template>
 
 
@@ -63,6 +72,7 @@
 import { AppState } from '../AppState';
 import { computed, reactive, onMounted } from 'vue';
 import OrderModal from '../components/OrderModal.vue';
+import PartModal from '../components/PartModal.vue';
 import { logger } from '../utils/Logger.js';
 import Pop from '../utils/Pop.js';
 import { ordersService } from '../services/OrdersService.js';
@@ -86,7 +96,7 @@ export default {
 
         }
     },
-    components: { OrderModal }
+    components: { OrderModal, PartModal }
 };
 </script>
 

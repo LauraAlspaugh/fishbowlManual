@@ -11,4 +11,20 @@ public class PartsController : ControllerBase
         _partsService = partsService;
         _auth0Provider = auth0Provider;
     }
+    [HttpPost]
+    public async Task<ActionResult<Part>> CreatePart([FromBody] Part partData)
+    {
+        try
+        {
+            Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
+            partData.CreatorId = userInfo.Id;
+            Part part = _partsService.CreatePart(partData);
+            return Ok(part);
+        }
+        catch (Exception error)
+        {
+
+            return BadRequest(error.Message);
+        }
+    }
 }

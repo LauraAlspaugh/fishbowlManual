@@ -1,5 +1,5 @@
 <template>
-    <div class="modal fade" id="OrderModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="PartModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -7,7 +7,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form @submit.prevent="createOrder()">
+                    <form @submit.prevent="createPart()">
                         <div class="mb-3">
                             <label for="description" class="form-label">Description</label>
                             <input v-model="editable.description" type="text" class="form-control" id="description"
@@ -15,7 +15,7 @@
                                 placeholder="Description of Order...">
 
                         </div>
-                        <!-- <div class="mb-3">
+                        <div class="mb-3">
                             <label for="partNumber" class="form-label">Part Number</label>
                             <input type="text" class="form-control" id="partNumber" aria-describedby="emailHelp"
                                 maxlength="1000" required placeholder="Part Number...">
@@ -38,7 +38,7 @@
                             <input type="text" class="form-control" id="uom" aria-describedby="emailHelp"
                                 maxlength="1000" required placeholder="UOM...">
 
-                        </div>  -->
+                        </div>
 
                         <button type="submit" class="btn btn-outline-dark">Submit</button>
                     </form>
@@ -54,45 +54,17 @@
 
 <script>
 import { AppState } from '../AppState';
-import { computed, reactive, onMounted, ref } from 'vue';
-import { logger } from '../utils/Logger.js';
-import Pop from '../utils/Pop.js';
-import { ordersService } from '../services/OrdersService.js';
-import { Modal } from 'bootstrap';
+import { computed, reactive, onMounted } from 'vue';
+import { ref } from 'vue';
 export default {
     setup() {
         const editable = ref({})
         return {
-            orders: computed(() => AppState.orders),
-            editable,
-            async createOrder() {
-                try {
-                    const orderData = editable.value
-                    await ordersService.createOrder(orderData)
-                    Pop.success('Order created!')
-                    Modal.getOrCreateInstance('#OrderModal').hide()
-                    editable.value = {}
-                } catch (error) {
-                    logger.error(error)
-                    Pop.error(error)
-
-                }
-
-            }
-
+            editable
         }
     }
 };
 </script>
 
 
-<style lang="scss" scoped>
-.modal-header {
-    background-color: #5DADE2;
-
-}
-
-.modal-footer {
-    background-color: #5DADE2;
-}
-</style>
+<style lang="scss" scoped></style>

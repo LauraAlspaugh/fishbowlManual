@@ -5,11 +5,13 @@ public class OrdersController : ControllerBase
 {
     private readonly OrdersService _ordersService;
     private readonly Auth0Provider _auth0Provider;
+    private readonly PartsService _partsService;
 
-    public OrdersController(OrdersService ordersService, Auth0Provider auth0Provider)
+    public OrdersController(OrdersService ordersService, Auth0Provider auth0Provider, PartsService partsService)
     {
         _ordersService = ordersService;
         _auth0Provider = auth0Provider;
+        _partsService = partsService;
     }
     [Authorize]
     [HttpPost]
@@ -35,6 +37,20 @@ public class OrdersController : ControllerBase
         {
             List<Order> orders = _ordersService.GetOrders();
             return Ok(orders);
+        }
+        catch (Exception error)
+        {
+
+            return BadRequest(error.Message);
+        }
+    }
+    [HttpGet("{orderId}/parts")]
+    public ActionResult<List<Part>> GetPartsByOrderId(int orderId)
+    {
+        try
+        {
+            List<Part> parts = _partsService.GetPartsByOrderId(orderId);
+            return Ok(parts);
         }
         catch (Exception error)
         {
