@@ -1,5 +1,6 @@
 import { AppState } from "../AppState.js"
 import { Order } from "../models/Order.js"
+import { Part } from "../models/Part.js"
 import { logger } from "../utils/Logger.js"
 import { api } from "./AxiosService.js"
 
@@ -12,6 +13,11 @@ async getOrders(){
     const res = await api.get('api/orders')
     logger.log("getting orders!", res.data)
     AppState.orders = res.data.map(pojo => new Order(pojo))
+}
+async createPart(partData){
+    const res = await api.post('api/parts', partData)
+    logger.log('creating part!', res.data)
+    AppState.parts.push(new Part(res.data))
 }
 }
 export const ordersService = new OrdersService()
