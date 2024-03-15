@@ -6,7 +6,7 @@
                     <h5 class="modal-title text-center text-light" id="exampleModalLabel">Create a Part</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
+                <div v-if="order" class="modal-body">
                     <form @submit.prevent="createPart()">
                         <div class="mb-3">
                             <label for="description" class="form-label">Description</label>
@@ -55,13 +55,21 @@
 
 <script>
 import { AppState } from '../AppState';
-import { computed, ref } from 'vue';
+import { computed, ref, } from 'vue';
 import { logger } from '../utils/Logger.js';
 import Pop from '../utils/Pop.js';
 import { ordersService } from '../services/OrdersService.js';
 export default {
     setup() {
-        const editable1 = ref({})
+
+        const editable1 = ref({
+            description: '',
+            partNumber: '',
+            partDescription: '',
+            quantity: 0,
+            uom: '',
+            orderId: '',
+        })
         return {
             editable1,
             account: computed(() => AppState.account),
@@ -69,7 +77,6 @@ export default {
             parts: computed(() => AppState.parts),
             async createPart() {
                 try {
-
                     const partData = editable1.value
                     partData.orderId = AppState.activeOrder.id
                     await ordersService.createPart(partData)

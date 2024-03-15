@@ -61,7 +61,9 @@ import { ordersService } from '../services/OrdersService.js';
 import { Modal } from 'bootstrap';
 export default {
     setup() {
-        const editable = ref({})
+        const editable = ref({
+            description: ''
+        })
         return {
             orders: computed(() => AppState.orders),
             editable,
@@ -71,7 +73,7 @@ export default {
                     await ordersService.createOrder(orderData)
                     Pop.success('Order created!')
                     Modal.getOrCreateInstance('#OrderModal').hide()
-                    editable.value = {}
+                    // editable.value = {}
                 } catch (error) {
                     logger.error(error)
                     Pop.error(error)
