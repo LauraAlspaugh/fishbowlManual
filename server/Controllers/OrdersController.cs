@@ -30,6 +30,21 @@ public class OrdersController : ControllerBase
             return BadRequest(error.Message);
         }
     }
+
+    [HttpGet("{orderId}")]
+    public ActionResult<Order> GetOrderById(int orderId)
+    {
+        try
+        {
+            Order order = _ordersService.GetOrderById(orderId);
+            return Ok(order);
+        }
+        catch (Exception error)
+        {
+
+            return BadRequest(error.Message);
+        }
+    }
     [HttpGet]
     public ActionResult<List<Order>> GetOrders()
     {

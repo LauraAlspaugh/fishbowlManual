@@ -52,7 +52,8 @@
                     'light-gray': index % 2 == 0,
                     'bg-light': index % 2 == 1
                 }">
-                <p @click="setActiveOrder(order)" class="order-name"> <i class="mdi mdi-menu-down fs-2 "></i> {{ order.description }}</p>
+                <p role="button" @click="setActiveOrder(order)" class="order-name"> <i
+                        class="mdi mdi-menu-down fs-2 "></i> {{ order.description }}</p>
                 <i role="button" data-bs-toggle="modal" data-bs-target="#PartModal" class="mdi mdi-plus p-2 fs-5"></i>
             </div>
             <!-- <div class="col-6 p-2 mt-1">
@@ -94,8 +95,8 @@ export default {
         return {
             orders: computed(() => AppState.orders),
             setActiveOrder(order) {
-               
-               ordersService.setActiveOrder(order)
+
+                ordersService.setActiveOrder(order)
 
 
             },

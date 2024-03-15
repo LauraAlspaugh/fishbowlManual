@@ -1,5 +1,6 @@
 
 
+
 namespace fishbowlManual.Repositories;
 public class OrdersRepository
 {
@@ -28,6 +29,25 @@ public class OrdersRepository
             order.Creator = account;
             return order;
         }, orderData).FirstOrDefault();
+        return order;
+    }
+
+    internal Order GetOrderById(int orderId)
+    {
+
+        string sql = @"
+       SELECT 
+       ord.*,
+       acc.*
+       FROM orders ord
+       JOIN accounts acc ON ord.creatorId = acc.id
+       WHERE ord.id = @orderId;
+       ";
+        Order order = _db.Query<Order, Account, Order>(sql, (order, account) =>
+        {
+            order.Creator = account;
+            return order;
+        }, new { orderId }).FirstOrDefault();
         return order;
     }
 
