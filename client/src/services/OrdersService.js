@@ -25,5 +25,10 @@ async setActiveOrder(order) {
 
     AppState.activeOrder = order
 }
+async getPartsByOrderId(orderId){
+    const res = await api.get(`api/orders/${orderId}/parts`)
+       logger.log('getting parts', res.data)
+       AppState.parts = res.data.map(pojo => new Part(pojo))
+}
 }
 export const ordersService = new OrdersService()

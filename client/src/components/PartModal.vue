@@ -59,6 +59,7 @@ import { computed, ref, } from 'vue';
 import { logger } from '../utils/Logger.js';
 import Pop from '../utils/Pop.js';
 import { ordersService } from '../services/OrdersService.js';
+import { Modal } from 'bootstrap';
 export default {
     setup() {
 
@@ -80,6 +81,8 @@ export default {
                     const partData = editable1.value
                     partData.orderId = AppState.activeOrder.id
                     await ordersService.createPart(partData)
+                    Pop.success('Order created!')
+                    Modal.getOrCreateInstance('#PartModal').hide()
                 } catch (error) {
                     logger.error(error)
                     Pop.error(error)

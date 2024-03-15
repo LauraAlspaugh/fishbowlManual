@@ -55,6 +55,23 @@
                 <p role="button" @click="setActiveOrder(order)" class="order-name"> <i
                         class="mdi mdi-menu-down fs-2 "></i> {{ order.description }}</p>
                 <i role="button" data-bs-toggle="modal" data-bs-target="#PartModal" class="mdi mdi-plus p-2 fs-5"></i>
+                <div class="d-flex" v-for="part in parts" :key="part.id">
+                    <div class="col-4">
+                        <p>{{ part.description }}</p>
+                    </div>
+                    <div class="col-2">
+                        <p>{{ part.partNumber }}</p>
+                    </div>
+                    <div class="col-2">
+                        <p>{{ part.partDescription }}</p>
+                    </div>
+                    <div class="col-2">
+                        <p>{{ part.quantity }}</p>
+                    </div>
+                    <div class="col-2">
+                        <p>{{ part.uom }}</p>
+                    </div>
+                </div>
             </div>
             <!-- <div class="col-6 p-2 mt-1">
                 <i class="mdi mdi-delete-outline p-2 fs-5"></i>
@@ -82,6 +99,7 @@ export default {
     setup() {
         onMounted(() => {
             getOrders()
+            getPartsByOrderId()
         })
         async function getOrders() {
             try {
@@ -92,8 +110,20 @@ export default {
 
             }
         }
+        async function getPartsByOrderId() {
+            try {
+                const orderId = AppState.activeOrder.id
+                await ordersService.getPartsByOrderId(orderId)
+            } catch (error) {
+                logger.error(error)
+                Pop.error(error)
+            }
+        }
         return {
+            order: computed(() => AppState.activeOrder),
+            parts: computed(() => AppState.parts),
             orders: computed(() => AppState.orders),
+            // parts: computed(() => AppState.parts.filter(part => part.orderId == AppState.activeOrder.id)),
             setActiveOrder(order) {
 
                 ordersService.setActiveOrder(order)
