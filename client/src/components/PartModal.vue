@@ -81,7 +81,8 @@ export default {
                     const partData = editable1.value
                     partData.orderId = AppState.activeOrder.id
                     await ordersService.createPart(partData)
-                    Pop.success('Order created!')
+
+                    Pop.success('Part created!')
                     Modal.getOrCreateInstance('#PartModal').hide()
                 } catch (error) {
                     logger.error(error)

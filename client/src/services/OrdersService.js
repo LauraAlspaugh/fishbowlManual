@@ -20,8 +20,8 @@ async createPart(partData){
     AppState.parts.push(new Part(res.data))
 }
 async setActiveOrder(order) {
-    const res = await api.get(`api/orders/${order.id}`)
-    logger.log('getting order by id', res.data)
+    //  const res = await api.get(`api/orders/${order.id}`)
+    // logger.log('getting order by id', res.data)
 
     AppState.activeOrder = order
 }

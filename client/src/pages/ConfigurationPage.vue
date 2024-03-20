@@ -59,7 +59,7 @@
                     <div class="col-4">
                         <p>{{ part.description }}</p>
                     </div>
-                    <div class="col-2">
+                    <!-- <div class="col-2">
                         <p>{{ part.partNumber }}</p>
                     </div>
                     <div class="col-2">
@@ -70,7 +70,7 @@
                     </div>
                     <div class="col-2">
                         <p>{{ part.uom }}</p>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <!-- <div class="col-6 p-2 mt-1">
@@ -99,7 +99,7 @@ export default {
     setup() {
         onMounted(() => {
             getOrders()
-            getPartsByOrderId()
+            // getPartsByOrderId()
         })
         async function getOrders() {
             try {
@@ -110,15 +110,15 @@ export default {
 
             }
         }
-        async function getPartsByOrderId() {
-            try {
-                const orderId = AppState.activeOrder.id
-                await ordersService.getPartsByOrderId(orderId)
-            } catch (error) {
-                logger.error(error)
-                Pop.error(error)
-            }
-        }
+        // async function getPartsByOrderId() {
+        //     try {
+        //         const orderId = AppState.activeOrder.id
+        //         await ordersService.getPartsByOrderId(orderId)
+        //     } catch (error) {
+        //         logger.error(error)
+        //         Pop.error(error)
+        //     }
+        // }
         return {
             order: computed(() => AppState.activeOrder),
             parts: computed(() => AppState.parts),
@@ -127,6 +127,8 @@ export default {
             setActiveOrder(order) {
 
                 ordersService.setActiveOrder(order)
+                const orderId = order.id
+                ordersService.getPartsByOrderId(orderId)
 
 
             },
