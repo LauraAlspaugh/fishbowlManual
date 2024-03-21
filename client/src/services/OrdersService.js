@@ -19,11 +19,8 @@ async createPart(partData){
     logger.log('creating part!', res.data)
     AppState.parts.push(new Part(res.data))
 }
-async setActiveOrder(order) {
-    //  const res = await api.get(`api/orders/${order.id}`)
-    // logger.log('getting order by id', res.data)
-
-    AppState.activeOrder = order
+async setActiveOrder(orderProp) {
+    AppState.activeOrder = orderProp
 }
 async getPartsByOrderId(orderId){
     const res = await api.get(`api/orders/${orderId}/parts`)

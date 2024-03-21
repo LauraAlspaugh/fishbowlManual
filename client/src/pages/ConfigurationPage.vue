@@ -52,33 +52,10 @@
                     'light-gray': index % 2 == 0,
                     'bg-light': index % 2 == 1
                 }">
-                <p role="button" @click="setActiveOrder(order)" class="order-name"> <i
-                        class="mdi mdi-menu-down fs-2 "></i> {{ order.description }}</p>
-                <i role="button" data-bs-toggle="modal" data-bs-target="#PartModal" class="mdi mdi-plus p-2 fs-5"></i>
-                <div class="d-flex" v-for="part in parts" :key="part.id">
-                    <div class="col-4">
-                        <p>{{ part.description }}</p>
-                    </div>
-                    <!-- <div class="col-2">
-                        <p>{{ part.partNumber }}</p>
-                    </div>
-                    <div class="col-2">
-                        <p>{{ part.partDescription }}</p>
-                    </div>
-                    <div class="col-2">
-                        <p>{{ part.quantity }}</p>
-                    </div>
-                    <div class="col-2">
-                        <p>{{ part.uom }}</p>
-                    </div> -->
-                </div>
+                <OrderCard :orderProp="order" />
+
             </div>
-            <!-- <div class="col-6 p-2 mt-1">
-                <i class="mdi mdi-delete-outline p-2 fs-5"></i>
-                <i class="mdi mdi-arrow-up p-2 fs-5"></i>
-                <i class="mdi mdi-arrow-down p-2 fs-5"></i>
-                <i class="mdi mdi-cog-outline p-2 fs-5"></i>
-            </div> -->
+
         </section>
     </div>
     <OrderModal />
@@ -94,6 +71,7 @@ import PartModal from '../components/PartModal.vue';
 import { logger } from '../utils/Logger.js';
 import Pop from '../utils/Pop.js';
 import { ordersService } from '../services/OrdersService.js';
+import OrderCard from '../components/OrderCard.vue';
 
 export default {
     setup() {
@@ -135,7 +113,7 @@ export default {
 
         }
     },
-    components: { OrderModal, PartModal }
+    components: { OrderModal, PartModal, OrderCard }
 };
 </script>
 

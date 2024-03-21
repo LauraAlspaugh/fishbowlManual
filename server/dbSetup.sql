@@ -14,3 +14,5 @@ CREATE TABLE IF NOT EXISTS parts (
 SELECT * FROM orders
 
 SELECT * FROM parts
+
+DROP TABLE parts
