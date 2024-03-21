@@ -47,19 +47,19 @@
             </div>
         </section>
         <section class="row">
-            <div v-for="order, index in orders" :key="order.id" class="col-12 order-row d-flex justify-content-between"
-                :class="{
+            <div v-for="order, index in orders" :key="order.id" class="col-12 order-row " :class="{
                     'light-gray': index % 2 == 0,
                     'bg-light': index % 2 == 1
                 }">
+
                 <OrderCard :orderProp="order" />
+                <!-- <OrderCard :orderProp="order" v-else /> -->
 
             </div>
 
         </section>
     </div>
     <OrderModal />
-    <PartModal />
 </template>
 
 
@@ -67,7 +67,6 @@
 import { AppState } from '../AppState';
 import { computed, reactive, onMounted } from 'vue';
 import OrderModal from '../components/OrderModal.vue';
-import PartModal from '../components/PartModal.vue';
 import { logger } from '../utils/Logger.js';
 import Pop from '../utils/Pop.js';
 import { ordersService } from '../services/OrdersService.js';
@@ -98,7 +97,7 @@ export default {
         //     }
         // }
         return {
-            order: computed(() => AppState.activeOrder),
+            activeOrder: computed(() => AppState.activeOrder),
             parts: computed(() => AppState.parts),
             orders: computed(() => AppState.orders),
             // parts: computed(() => AppState.parts.filter(part => part.orderId == AppState.activeOrder.id)),
@@ -113,7 +112,7 @@ export default {
 
         }
     },
-    components: { OrderModal, PartModal, OrderCard }
+    components: { OrderModal, OrderCard }
 };
 </script>
 

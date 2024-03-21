@@ -6,7 +6,7 @@
                     <h5 class="modal-title text-center text-light" id="exampleModalLabel">Create a Part</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div v-if="order" class="modal-body">
+                <div class="modal-body">
                     <form @submit.prevent="createPart()">
                         <div class="mb-3">
                             <label for="description" class="form-label">Description</label>
