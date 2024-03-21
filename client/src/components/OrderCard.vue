@@ -8,9 +8,23 @@
             <i role="button" data-bs-toggle="modal" data-bs-target="#PartModal" class="mdi mdi-plus p-2 fs-5"></i>
         </div>
         <div v-if="order">
-            <p v-for="part in parts" :key="part.id">
-                {{ part.partDescription }}
-            </p>
+            <div class="d-flex justify-content-evenly m-3" v-for="part in parts" :key="part.id">
+                <div class="col-4">
+                    {{ part.description }}
+                </div>
+                <div class="col-2">
+                    {{ part.partNumber }}
+                </div>
+                <div class="col-2">
+                    {{ part.partDescription }}
+                </div>
+                <div class="col-2">
+                    {{ part.quantity }}
+                </div>
+                <div class="col-1">
+                    {{ part.uom }}
+                </div>
+            </div>
         </div>
     </div>
     <PartModal />
