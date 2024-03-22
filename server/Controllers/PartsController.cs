@@ -27,4 +27,21 @@ public class PartsController : ControllerBase
             return BadRequest(error.Message);
         }
     }
+    [Authorize]
+    [HttpDelete("{partId}")]
+    public async Task<ActionResult<string>> DestroyPart(int partId)
+    {
+        try
+        {
+            Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
+            string userId = userInfo.Id;
+            string message = _partsService.DestroyPart(partId, userId);
+            return Ok(message);
+        }
+        catch (Exception error)
+        {
+
+            return BadRequest(error.Message);
+        }
+    }
 }

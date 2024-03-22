@@ -23,6 +23,8 @@
                 </div>
                 <div class="col-1">
                     {{ part.uom }}
+                    <i @click="destroyPart(part.id)" class="mdi mdi-delete-forever p-2" type="button"
+                        title="delete this part"></i>
                 </div>
             </div>
         </div>
@@ -38,6 +40,8 @@ import { Order } from '../models/Order.js';
 import { computed } from 'vue';
 import { ordersService } from '../services/OrdersService.js';
 import PartModal from './PartModal.vue';
+import Pop from '../utils/Pop.js';
+import { logger } from '../utils/Logger.js';
 
 export default {
     props: { orderProp: { type: Order, required: true } },
@@ -54,6 +58,19 @@ export default {
                 ordersService.getPartsByOrderId(orderId)
 
 
+            },
+            async destroyPart(partId) {
+                try {
+                    if (await Pop.confirm('Are you sure you want to destroy this Part? ')) {
+
+                        logger.log('deleting part with following id ? ', partId);
+                        await ordersService.destroyPart(partId);
+                    }
+                }
+                catch (error) {
+                    logger.error(error);
+                    Pop.error(error);
+                }
             },
         }
     },

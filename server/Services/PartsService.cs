@@ -1,5 +1,6 @@
 
 
+
 namespace fishbowlManual.Services;
 public class PartsService
 {
@@ -14,6 +15,26 @@ public class PartsService
     {
         Part part = _partsRepository.CreatePart(partData);
         return part;
+    }
+    internal Part GetPartById(int partId)
+    {
+        Part part = _partsRepository.GetPartById(partId);
+        if (part == null)
+        {
+            throw new Exception("not a valid part id!");
+        }
+        return part;
+    }
+
+    internal string DestroyPart(int partId, string userId)
+    {
+        Part part = GetPartById(partId);
+        if (part.CreatorId != userId)
+        {
+            throw new Exception("do not try it");
+        }
+        _partsRepository.DestroyPart(partId);
+        return "it really is gone";
     }
 
     internal List<Part> GetPartsByOrderId(int orderId)

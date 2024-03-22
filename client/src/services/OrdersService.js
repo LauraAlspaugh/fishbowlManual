@@ -27,5 +27,12 @@ async getPartsByOrderId(orderId){
        logger.log('getting parts', res.data)
        AppState.parts = res.data.map(pojo => new Part(pojo))
 }
+async destroyPart(partId){
+    const res = await api.delete(`api/parts/${partId}`)
+        logger.log('destroying part', res.data)
+        const partIndex = AppState.parts.findIndex(part => part.id == partId)
+        if (partIndex == -1) { throw new Error('No part found with this id') }
+        AppState.parts.splice(partIndex, 1)
+}
 }
 export const ordersService = new OrdersService()
