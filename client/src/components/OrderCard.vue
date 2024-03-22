@@ -1,7 +1,10 @@
 <template>
     <div>
         <div class="d-flex justify-content-between">
-            <p role="button" @click="setActiveOrder(orderProp)" class="order-name"> <i
+            <p v-if="!order" role="button" @click="setActiveOrder(orderProp)" class="order-name"> <i
+                    class="mdi mdi-menu-right fs-2 "></i>
+                {{ orderProp.description }}</p>
+            <p v-else role="button" @click="setActiveOrder(orderProp)" class="order-name"> <i
                     class="mdi mdi-menu-down fs-2 "></i>
                 {{ orderProp.description }}</p>
 
