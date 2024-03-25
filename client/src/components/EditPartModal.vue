@@ -74,6 +74,7 @@ export default {
             editable,
             parts: computed(() => AppState.parts),
             async editPart() {
+
                 try {
                     const partData = editable.value;
                     await ordersService.editPart(partData);

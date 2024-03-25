@@ -44,4 +44,22 @@ public class PartsController : ControllerBase
             return BadRequest(error.Message);
         }
     }
+    [Authorize]
+    [HttpPut("{partId}")]
+    public async Task<ActionResult<Part>> EditPart(int partId, [FromBody] Part partData)
+
+    {
+        try
+        {
+            Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
+            string userId = userInfo.Id;
+            Part part = _partsService.EditPart(partId, partData, userId);
+            return Ok(part);
+        }
+        catch (Exception error)
+        {
+
+            return BadRequest(error.Message);
+        }
+    }
 }

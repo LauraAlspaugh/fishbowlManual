@@ -42,4 +42,19 @@ public class PartsService
         List<Part> parts = _partsRepository.GetPartsByOrderId(orderId);
         return parts;
     }
+
+    internal Part EditPart(int partId, Part partData, string userId)
+    {
+        Part part = GetPartById(partId);
+        if (part.CreatorId != userId)
+        {
+            throw new Exception("not your part to edit!");
+        }
+        part.Description = partData.Description ?? part.Description;
+        part.PartNumber = partData.PartNumber ?? part.PartNumber;
+        part.PartDescription = partData.PartDescription ?? part.PartDescription;
+        part.Quantity = partData.Quantity ?? part.Quantity;
+        _partsRepository.EditPart(part);
+        return part;
+    }
 }

@@ -1,6 +1,7 @@
 
 
 
+
 namespace fishbowlManual.Repositories;
 public class PartsRepository
 {
@@ -36,6 +37,32 @@ public class PartsRepository
     {
         string sql = "DELETE FROM parts WHERE id = @partId LIMIT 1;";
         _db.Execute(sql, new { partId });
+    }
+
+    internal Part EditPart(Part part)
+    {
+        string sql = @"
+    UPDATE parts
+    SET 
+    
+description = @Description, 
+partNumber = @PartNumber,
+partDescription = @PartDescription,
+quantity = @Quantity,
+WHERE id = @Id;
+
+SELECT par.*,
+    acc.*
+    FROM parts par
+    JOIN accounts acc ON par.creatorId = acc.id
+    Where par.id = @Id;
+    ";
+        Part newPart = _db.Query<Part, Account, Part>(sql, (part, account) =>
+    {
+        part.Creator = account;
+        return part;
+    }, part).FirstOrDefault();
+        return newPart;
     }
 
     internal Part GetPartById(int partId)
