@@ -9,6 +9,7 @@
                 {{ orderProp.description }}</p>
 
             <i role="button" data-bs-toggle="modal" data-bs-target="#PartModal" class="mdi mdi-plus p-2 fs-5"></i>
+
         </div>
         <div v-if="order">
             <div class="d-flex justify-content-evenly m-3" v-for="part in parts" :key="part.id">
@@ -28,12 +29,14 @@
                     {{ part.uom }}
                     <i @click="destroyPart(part.id)" class="mdi mdi-delete-forever p-2" type="button"
                         title="delete this part"></i>
+                    <i class="mdi mdi-pencil  btn" type="button" title="edit this part" data-bs-toggle="modal"
+                        data-bs-target="#EditPartModal"></i>
                 </div>
             </div>
         </div>
     </div>
     <PartModal />
-
+    <EditPartModal />
 </template>
 
 
@@ -43,6 +46,7 @@ import { Order } from '../models/Order.js';
 import { computed } from 'vue';
 import { ordersService } from '../services/OrdersService.js';
 import PartModal from './PartModal.vue';
+import EditPartModal from './EditPartModal.vue';
 import Pop from '../utils/Pop.js';
 import { logger } from '../utils/Logger.js';
 
@@ -75,9 +79,12 @@ export default {
                     Pop.error(error);
                 }
             },
+            // enableEdit(part) {
+            //     editable1.value = part
+            // },
         }
     },
-    components: { PartModal }
+    components: { PartModal, EditPartModal }
 };
 </script>
 

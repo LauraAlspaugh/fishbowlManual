@@ -60,7 +60,7 @@ a:hover {
 }
 
 .nav-color {
-  background-color: #5DADE2;
+  background-color: lightblue;
   height: 47px;
 }
 
