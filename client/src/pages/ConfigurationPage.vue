@@ -133,9 +133,16 @@ export default {
 
 
 
+// a:hover {
+//     color: red;
+// }
 
-a:active {
-    color: yellow;
+// a:active {
+//     color: yellow;
+// }
+
+a:focus {
+    color: rgb(18, 143, 215);
 }
 
 .second-row {

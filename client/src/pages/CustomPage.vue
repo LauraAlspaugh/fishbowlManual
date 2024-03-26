@@ -41,4 +41,8 @@ export default {
 .main-row {
     background-color: lightgray;
 }
+
+a:focus {
+    color: rgb(18, 143, 215);
+}
 </style>

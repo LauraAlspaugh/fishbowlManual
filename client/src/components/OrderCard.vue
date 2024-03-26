@@ -12,7 +12,7 @@
 
         </div>
         <div v-if="order">
-            <div class="d-flex justify-content-evenly m-3" v-for="part in parts" :key="part.id">
+            <div class=" part-line d-flex justify-content-evenly m-3 " v-for="part in parts" :key="part.id">
                 <div class="col-4">
                     {{ part.description }}
                 </div>
@@ -94,4 +94,10 @@ export default {
 </script>
 
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.part-line {
+    align-items: center;
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+}
+</style>
