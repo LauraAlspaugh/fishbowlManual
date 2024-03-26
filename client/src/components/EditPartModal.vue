@@ -3,7 +3,7 @@
         <div class="modal-dialog">
             <div v-if="part" class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title text-center text-light" id="exampleModalLabel">Create a Part</h5>
+                    <h5 class="modal-title text-center text-light" id="exampleModalLabel">Edit Your Part</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -93,4 +93,13 @@ export default {
 </script>
 
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.modal-header {
+    background-color: #5DADE2;
+
+}
+
+.modal-footer {
+    background-color: #5DADE2;
+}
+</style>

@@ -126,9 +126,16 @@ export default {
     background-color: lightblue;
 }
 
-.active,
-.navbar-brand:hover {
-    color: #5DADE2;
+// .active,
+// .navbar-brand :active {
+//     color: #5DADE2;
+// }
+
+
+
+
+a:active {
+    color: yellow;
 }
 
 .second-row {
