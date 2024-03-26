@@ -7,5 +7,6 @@ export const AppState = reactive({
   account: {},
   orders: [],
   parts: [],
-  activeOrder: null
+  activeOrder: null,
+  activePart: null
 })

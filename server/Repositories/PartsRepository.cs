@@ -48,7 +48,7 @@ public class PartsRepository
 description = @Description, 
 partNumber = @PartNumber,
 partDescription = @PartDescription,
-quantity = @Quantity,
+quantity = @Quantity
 WHERE id = @Id;
 
 SELECT par.*,

@@ -29,8 +29,8 @@
                     {{ part.uom }}
                     <i @click="destroyPart(part.id)" class="mdi mdi-delete-forever p-2" type="button"
                         title="delete this part"></i>
-                    <i class="mdi mdi-pencil  btn" type="button" title="edit this part" data-bs-toggle="modal"
-                        data-bs-target="#EditPartModal"></i>
+                    <i @click="setActivePart(part)" class="mdi mdi-pencil  btn" type="button" title="edit this part"
+                        data-bs-toggle="modal" data-bs-target="#EditPartModal"></i>
                 </div>
             </div>
         </div>
@@ -54,6 +54,7 @@ export default {
     props: { orderProp: { type: Order, required: true } },
     setup(props) {
         return {
+            part: computed(() => AppState.activePart),
             order: computed(() => AppState.activeOrder),
             orders: computed(() => AppState.orders),
             parts: computed(() => AppState.parts.filter(p => p.orderId == props.orderProp.id)),
@@ -65,6 +66,10 @@ export default {
                 ordersService.getPartsByOrderId(orderId)
 
 
+            },
+            setActivePart(part) {
+                ordersService.setActivePart(part)
+                logger.log('setting active part!')
             },
             async destroyPart(partId) {
                 try {

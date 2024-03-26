@@ -19,16 +19,21 @@ async createPart(partData){
     logger.log('creating part!', res.data)
     AppState.parts.push(new Part(res.data))
 }
-async editPart(partData) {
-    const res = await api.put('api/parts/' + partData.id, partData)
+async editPart(partData, partId) {
+     const res = await api.put(`api/parts/${partId}`, partData)
+    // const res = await api.put('api/parts/' + partData.id, partData)
     logger.log('editing part!', res.data)
     const partIndex = AppState.parts.findIndex(part => part.id == partData.id)
-    if (partIndex == -1) { throw new Error('No part found with this id') }
+    // if (partIndex == -1) { throw new Error('No part found with this id') }
     AppState.parts.splice(partIndex, 1, partData)
 
 }
 async setActiveOrder(orderProp) {
     AppState.activeOrder = orderProp
+}
+async setActivePart(part){
+    AppState.activePart = part
+    logger.log(part.id)
 }
 async getPartsByOrderId(orderId){
     const res = await api.get(`api/orders/${orderId}/parts`)

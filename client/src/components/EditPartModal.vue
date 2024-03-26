@@ -1,7 +1,7 @@
 <template>
     <div class="modal fade" id="EditPartModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content">
+            <div v-if="part" class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title text-center text-light" id="exampleModalLabel">Create a Part</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -67,17 +67,19 @@ export default {
             partNumber: '',
             partDescription: '',
             quantity: 0,
-            uom: '',
-            orderId: '',
+            uom: ''
         })
         return {
             editable,
             parts: computed(() => AppState.parts),
+            part: computed(() => AppState.activePart),
+            order: computed(() => AppState.activeOrder),
             async editPart() {
 
                 try {
                     const partData = editable.value;
-                    await ordersService.editPart(partData);
+                    const partId = AppState.activePart.id
+                    await ordersService.editPart(partData, partId);
 
                 }
                 catch (error) {
