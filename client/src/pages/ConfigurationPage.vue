@@ -145,6 +145,10 @@ a:focus {
     color: rgb(18, 143, 215);
 }
 
+.order-row {
+    align-items: center;
+}
+
 .second-row {
     background-color: lightgray;
     border: 1px solid black;

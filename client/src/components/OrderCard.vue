@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="d-flex justify-content-between">
+        <div class="order-row d-flex justify-content-between">
             <p v-if="!order" role="button" @click="setActiveOrder(orderProp)" class="order-name"> <i
                     class="mdi mdi-menu-right fs-2 "></i>
                 {{ orderProp.description }}</p>
@@ -99,5 +99,9 @@ export default {
     align-items: center;
     border-bottom: 1px solid black;
     border-top: 1px solid black;
+}
+
+.order-row {
+    align-items: center;
 }
 </style>
