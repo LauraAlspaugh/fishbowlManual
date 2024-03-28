@@ -9,6 +9,8 @@
                 {{ orderProp.description }}</p>
 
             <i role="button" data-bs-toggle="modal" data-bs-target="#PartModal" class="mdi mdi-plus p-2 fs-5"></i>
+            <i role="button" title="delete this order" @click="destroyOrder(orderProp.id)"
+                class="mdi mdi-delete-forever"></i>
 
         </div>
         <div v-if="order">
@@ -70,6 +72,18 @@ export default {
             setActivePart(part) {
                 ordersService.setActivePart(part)
                 logger.log('setting active part!')
+            },
+            async destroyOrder(orderProp) {
+                try {
+                    if (await Pop.confirm('Are you sure you want to destroy this Order? ')) {
+                        const orderId = orderProp.id
+                        await ordersService.destroyOrder(orderId)
+                    }
+                } catch (error) {
+                    logger.error(error)
+                    Pop.error(error)
+
+                }
             },
             async destroyPart(partId) {
                 try {

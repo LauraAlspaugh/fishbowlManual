@@ -1,6 +1,7 @@
 
 
 
+
 namespace fishbowlManual.Repositories;
 public class OrdersRepository
 {
@@ -30,6 +31,12 @@ public class OrdersRepository
             return order;
         }, orderData).FirstOrDefault();
         return order;
+    }
+
+    internal void DestroyOrder(int orderId, string userId)
+    {
+        string sql = "DELETE FROM orders WHERE id = @orderId LIMIT 1;";
+        _db.Execute(sql, new { orderId });
     }
 
     internal Order GetOrderById(int orderId)

@@ -47,5 +47,12 @@ async destroyPart(partId){
         if (partIndex == -1) { throw new Error('No part found with this id') }
         AppState.parts.splice(partIndex, 1)
 }
+async destroyOrder(orderId){
+    const res = await api.delete(`api/orders/${orderId}`)
+    logger.log('deleting this order!', res.data)
+    const orderIndex = AppState.orders.findIndex(order => order.id == orderId)
+    if (orderIndex == -1) { throw new Error('No order found with this id') }
+    AppState.orders.splice(orderIndex, 1)
+}
 }
 export const ordersService = new OrdersService()

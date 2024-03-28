@@ -73,4 +73,21 @@ public class OrdersController : ControllerBase
             return BadRequest(error.Message);
         }
     }
+    [Authorize]
+    [HttpDelete("{orderId}")]
+    public async Task<ActionResult<string>> DestroyOrder(int orderId)
+    {
+        try
+        {
+            Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
+            string userId = userInfo.Id;
+            string message = _ordersService.DestroyOrder(orderId, userId);
+            return Ok(message);
+        }
+        catch (Exception error)
+        {
+
+            return BadRequest(error.Message);
+        }
+    }
 }

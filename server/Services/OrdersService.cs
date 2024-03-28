@@ -17,6 +17,17 @@ public class OrdersService
         return order;
     }
 
+    internal string DestroyOrder(int orderId, string userId)
+    {
+        Order order = GetOrderById(orderId);
+        if (order.CreatorId != userId)
+        {
+            throw new Exception("do not try it");
+        }
+        _ordersRepository.DestroyOrder(orderId, userId);
+        return "it really is gone";
+    }
+
     internal Order GetOrderById(int orderId)
     {
         Order order = _ordersRepository.GetOrderById(orderId);
