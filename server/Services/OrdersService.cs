@@ -28,6 +28,18 @@ public class OrdersService
         return "it really is gone";
     }
 
+    internal Order EditOrder(int orderId, Order orderData, string userId)
+    {
+        Order order = GetOrderById(orderId);
+        if (order.CreatorId != userId)
+        {
+            throw new Exception("not yours to edit");
+        }
+        order.Description = orderData.Description ?? order.Description;
+        _ordersRepository.EditOrder(order);
+        return order;
+    }
+
     internal Order GetOrderById(int orderId)
     {
         Order order = _ordersRepository.GetOrderById(orderId);

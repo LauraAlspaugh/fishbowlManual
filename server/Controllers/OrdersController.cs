@@ -90,4 +90,21 @@ public class OrdersController : ControllerBase
             return BadRequest(error.Message);
         }
     }
+    [Authorize]
+    [HttpPut("{orderId}")]
+    public async Task<ActionResult<Order>> EditOrder(int orderId, [FromBody] Order orderData)
+    {
+        try
+        {
+            Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
+            string userId = userInfo.Id;
+            Order order = _ordersService.EditOrder(orderId, orderData, userId);
+            return Ok(order);
+        }
+        catch (Exception error)
+        {
+
+            return BadRequest(error.Message);
+        }
+    }
 }

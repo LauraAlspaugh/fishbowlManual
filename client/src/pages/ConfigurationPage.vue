@@ -22,16 +22,17 @@
                 </router-link>
             </div>
             <div class="col-4 p-2 text-end mt-1">
-                <i role="button" data-bs-toggle="modal" data-bs-target="#OrderModal" class="mdi mdi-plus p-2 fs-5"></i>
-                <i class="mdi mdi-delete-outline p-2 fs-5"></i>
+                <i role="button" title="start an order" data-bs-toggle="modal" data-bs-target="#OrderModal"
+                    class="mdi mdi-plus p-2 fs-5"></i>
+                <!-- <i class="mdi mdi-delete-outline p-2 fs-5"></i> -->
                 <i class="mdi mdi-arrow-up p-2 fs-5"></i>
                 <i class="mdi mdi-arrow-down p-2 fs-5"></i>
                 <i class="mdi mdi-cog-outline p-2 fs-5"></i>
             </div>
         </section>
-        <section class="row d-flex justify-content-evenly ">
-            <div class="col-4 second-row d-flex align-items-center ">
-                <p class="first-heading">Description</p>
+        <section class="row d-flex justify-content-evenly main-headings ">
+            <div class="col-4 second-row">
+                <p class="first-heading d-flex">Description</p>
             </div>
             <div class="col-2 second-row">
                 <p class="first-heading">Part Number</p>
@@ -155,8 +156,7 @@ a:focus {
 }
 
 .first-heading {
-
-    display: flex;
     align-items: center;
+    padding-top: 7px;
 }
 </style>

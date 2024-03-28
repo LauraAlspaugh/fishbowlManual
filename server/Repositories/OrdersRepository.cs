@@ -2,6 +2,7 @@
 
 
 
+
 namespace fishbowlManual.Repositories;
 public class OrdersRepository
 {
@@ -37,6 +38,29 @@ public class OrdersRepository
     {
         string sql = "DELETE FROM orders WHERE id = @orderId LIMIT 1;";
         _db.Execute(sql, new { orderId });
+    }
+
+    internal Order EditOrder(Order order)
+    {
+        string sql = @"
+    UPDATE orders
+    SET 
+    
+description = @Description
+WHERE id = @Id;
+
+SELECT ord.*,
+    acc.*
+    FROM orders ord
+    JOIN accounts acc ON ord.creatorId = acc.id
+    Where ord.id = @Id;
+    ";
+        Order newOrder = _db.Query<Order, Account, Order>(sql, (order, account) =>
+    {
+        order.Creator = account;
+        return order;
+    }, order).FirstOrDefault();
+        return newOrder;
     }
 
     internal Order GetOrderById(int orderId)

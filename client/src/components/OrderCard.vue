@@ -1,16 +1,22 @@
 <template>
     <div>
         <div class="order-row d-flex justify-content-between">
-            <p v-if="!order" role="button" @click="setActiveOrder(orderProp)" class="order-name"> <i
-                    class="mdi mdi-menu-right fs-2 "></i>
-                {{ orderProp.description }}</p>
-            <p v-else role="button" @click="setActiveOrder(orderProp)" class="order-name"> <i
-                    class="mdi mdi-menu-down fs-2 "></i>
-                {{ orderProp.description }}</p>
+            <div class="col-6">
 
-            <i role="button" data-bs-toggle="modal" data-bs-target="#PartModal" class="mdi mdi-plus p-2 fs-5"></i>
-            <i role="button" title="delete this order" @click="destroyOrder(orderProp)"
-                class="mdi mdi-delete-forever"></i>
+                <p v-if="!order" role="button" @click="setActiveOrder(orderProp)" class="order-name"> <i
+                        class="mdi mdi-menu-right fs-2 "></i>
+                    {{ orderProp.description }}</p>
+                <p v-else role="button" @click="setActiveOrder(orderProp)" class="order-name"> <i
+                        class="mdi mdi-menu-down fs-2 "></i>
+                    {{ orderProp.description }}</p>
+            </div>
+            <div class="col-6 text-end">
+
+                <i role="button" title="add a part to order" data-bs-toggle="modal" data-bs-target="#PartModal"
+                    class="mdi mdi-plus p-2 fs-5"></i>
+                <i role="button" title="delete this order" @click="destroyOrder(orderProp)"
+                    class="mdi mdi-delete-forever"></i>
+            </div>
 
         </div>
         <div v-if="order">
