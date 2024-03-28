@@ -15,7 +15,8 @@
                 <i role="button" title="add a part to order" data-bs-toggle="modal" data-bs-target="#PartModal"
                     class="mdi mdi-plus p-2 fs-5"></i>
                 <i role="button" title="delete this order" @click="destroyOrder(orderProp)"
-                    class="mdi mdi-delete-forever"></i>
+                    class="mdi mdi-delete-forever p-2"></i>
+                <i role="button" title="edit this order" class="mdi mdi-pencil p-2"></i>
             </div>
 
         </div>
