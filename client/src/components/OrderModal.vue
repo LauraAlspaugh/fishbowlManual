@@ -13,33 +13,7 @@
                             <input v-model="editable.description" type="text" class="form-control" id="description"
                                 aria-describedby="emailHelp" maxlength="150" required
                                 placeholder="Description of Order...">
-
                         </div>
-                        <!-- <div class="mb-3">
-                            <label for="partNumber" class="form-label">Part Number</label>
-                            <input type="text" class="form-control" id="partNumber" aria-describedby="emailHelp"
-                                maxlength="1000" required placeholder="Part Number...">
-
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="partDescription" class="form-label">Part Description</label>
-                            <textarea type="text" class="form-control" id="partDescription" rows="5" maxlength="700"
-                                placeholder="Part Description..."></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label for="quantity" class="form-label">Quantity</label>
-                            <input type="text" class="form-control" id="quantity" aria-describedby="emailHelp"
-                                maxlength="1000" required placeholder="Quantity...">
-
-                        </div>
-                        <div class="mb-3">
-                            <label for="uom" class="form-label">UOM</label>
-                            <input type="text" class="form-control" id="uom" aria-describedby="emailHelp"
-                                maxlength="1000" required placeholder="UOM...">
-
-                        </div>  -->
-
                         <button type="submit" class="btn btn-outline-dark">Submit</button>
                     </form>
                 </div>

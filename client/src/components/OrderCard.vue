@@ -16,7 +16,8 @@
                     class="mdi mdi-plus p-2 fs-5"></i>
                 <i role="button" title="delete this order" @click="destroyOrder(orderProp)"
                     class="mdi mdi-delete-forever p-2"></i>
-                <i role="button" title="edit this order" class="mdi mdi-pencil p-2"></i>
+                <i data-bs-toggle="modal" data-bs-target="#EditOrderModal" role="button" title="edit this order"
+                    class="mdi mdi-pencil p-2"></i>
             </div>
 
         </div>
@@ -46,6 +47,7 @@
     </div>
     <PartModal />
     <EditPartModal />
+    <EditOrderModal />
 </template>
 
 
@@ -56,6 +58,7 @@ import { computed } from 'vue';
 import { ordersService } from '../services/OrdersService.js';
 import PartModal from './PartModal.vue';
 import EditPartModal from './EditPartModal.vue';
+import EditOrderModal from './EditOrderModal.vue';
 import Pop from '../utils/Pop.js';
 import { logger } from '../utils/Logger.js';
 
@@ -110,7 +113,7 @@ export default {
             // },
         }
     },
-    components: { PartModal, EditPartModal }
+    components: { PartModal, EditPartModal, EditOrderModal }
 };
 </script>
 
