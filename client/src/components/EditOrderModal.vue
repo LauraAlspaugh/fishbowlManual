@@ -57,4 +57,13 @@ export default {
 </script>
 
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.modal-header {
+    background-color: #5DADE2;
+
+}
+
+.modal-footer {
+    background-color: #5DADE2;
+}
+</style>
