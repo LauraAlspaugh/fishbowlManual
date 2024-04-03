@@ -7,7 +7,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form @submit.prevent="editOrder()">
+                    <form @submit.prevent="editOrder(order)">
                         <div class="mb-3">
                             <label for="description" class="form-label">Description</label>
                             <input v-model="editable.description" type="text" class="form-control" id="description"
@@ -40,11 +40,11 @@ export default {
         return {
             editable,
             order: computed(() => AppState.activeOrder),
-            async editOrder() {
+            async editOrder(order) {
                 try {
                     const orderData = editable.value;
                     const orderId = AppState.activeOrder.id
-                    await ordersService.editPart(orderData, orderId)
+                    await ordersService.editOrder(orderData, orderId)
                 } catch (error) {
                     logger.error(error)
                     Pop.error(error)
