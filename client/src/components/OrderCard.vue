@@ -70,7 +70,6 @@ export default {
             order: computed(() => AppState.activeOrder),
             orders: computed(() => AppState.orders),
             parts: computed(() => AppState.parts.filter(p => p.orderId == props.orderProp.id)),
-            // parts: computed(() => AppState.parts),
             setActiveOrder(orderProp) {
 
                 ordersService.setActiveOrder(orderProp)
@@ -108,9 +107,6 @@ export default {
                     Pop.error(error);
                 }
             },
-            // enableEdit(part) {
-            //     editable1.value = part
-            // },
         }
     },
     components: { PartModal, EditPartModal, EditOrderModal }

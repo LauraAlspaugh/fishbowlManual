@@ -47,7 +47,6 @@ export default {
                     await ordersService.createOrder(orderData)
                     Pop.success('Order created!')
                     Modal.getOrCreateInstance('#OrderModal').hide()
-                    // editable.value = {}
                 } catch (error) {
                     logger.error(error)
                     Pop.error(error)

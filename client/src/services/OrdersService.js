@@ -29,7 +29,6 @@ async editPart(partData, partId) {
      const res = await api.put(`api/parts/${partId}`, partData)
     logger.log('editing part!', res.data)
     const partIndex = AppState.parts.findIndex(part => part.id == partData.id)
-    // if (partIndex == -1) { throw new Error('No part found with this id') }
     AppState.parts.splice(partIndex, 1, partData)
 
 }

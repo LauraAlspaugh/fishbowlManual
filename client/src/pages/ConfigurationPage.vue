@@ -24,7 +24,6 @@
             <div class="col-4 p-2 text-end mt-1">
                 <i role="button" title="start an order" data-bs-toggle="modal" data-bs-target="#OrderModal"
                     class="mdi mdi-plus p-2 fs-5"></i>
-                <!-- <i class="mdi mdi-delete-outline p-2 fs-5"></i> -->
                 <i class="mdi mdi-arrow-up p-2 fs-5"></i>
                 <i class="mdi mdi-arrow-down p-2 fs-5"></i>
                 <i class="mdi mdi-cog-outline p-2 fs-5"></i>
@@ -77,7 +76,6 @@ export default {
     setup() {
         onMounted(() => {
             getOrders()
-            // getPartsByOrderId()
         })
         async function getOrders() {
             try {
@@ -88,15 +86,7 @@ export default {
 
             }
         }
-        // async function getPartsByOrderId() {
-        //     try {
-        //         const orderId = AppState.activeOrder.id
-        //         await ordersService.getPartsByOrderId(orderId)
-        //     } catch (error) {
-        //         logger.error(error)
-        //         Pop.error(error)
-        //     }
-        // }
+
         return {
             activeOrder: computed(() => AppState.activeOrder),
             parts: computed(() => AppState.parts),
@@ -126,21 +116,6 @@ export default {
 .light-gray {
     background-color: lightblue;
 }
-
-// .active,
-// .navbar-brand :active {
-//     color: #5DADE2;
-// }
-
-
-
-// a:hover {
-//     color: red;
-// }
-
-// a:active {
-//     color: yellow;
-// }
 
 a:focus {
     color: rgb(18, 143, 215);

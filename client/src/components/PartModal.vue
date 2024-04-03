@@ -90,14 +90,6 @@ export default {
 
                 }
             },
-            // enableEdit(part) {
-            //     editable1.value = part
-            // },
-            // routeSubmit() {
-            //     if (editable1.value.id) {
-            //         this.editPart()
-            //     } else this.createPart()
-            // },
             async editPart() {
                 try {
                     const partData = editable1.value;
