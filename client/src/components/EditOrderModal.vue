@@ -10,8 +10,9 @@
                     <form @submit.prevent="editOrder()">
                         <div class="mb-3">
                             <label for="description" class="form-label">Description</label>
-                            <input type="text" class="form-control" id="description" aria-describedby="emailHelp"
-                                maxlength="150" required placeholder="Description of Order...">
+                            <input v-model="editable.description" type="text" class="form-control" id="description"
+                                aria-describedby="emailHelp" maxlength="150" required
+                                placeholder="Description of Order...">
                         </div>
                         <button type="submit" class="btn btn-outline-dark">Submit</button>
                     </form>
@@ -27,13 +28,28 @@
 
 <script>
 import { AppState } from '../AppState';
-import { computed, reactive, onMounted } from 'vue';
+import { computed, reactive, onMounted, ref } from 'vue';
+import { logger } from '../utils/Logger.js';
+import Pop from '../utils/Pop.js';
+import { ordersService } from '../services/OrdersService.js';
 export default {
     setup() {
+        const editable = ref({
+            description: ''
+        })
         return {
+            editable,
             order: computed(() => AppState.activeOrder),
             async editOrder() {
+                try {
+                    const orderData = editable.value;
+                    const orderId = AppState.activeOrder.id
+                    await ordersService.editPart(orderData, orderId)
+                } catch (error) {
+                    logger.error(error)
+                    Pop.error(error)
 
+                }
             }
         }
     }
