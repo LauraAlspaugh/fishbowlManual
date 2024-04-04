@@ -122,8 +122,6 @@ export default {
 <style lang="scss" scoped>
 .part-line {
     align-items: center;
-    // border-bottom: 1px solid black;
-    // border-top: 1px solid black;
 }
 
 .order-row {
