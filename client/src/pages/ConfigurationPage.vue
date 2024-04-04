@@ -47,7 +47,7 @@
             </div>
         </section>
         <section class="row">
-            <div v-for="order, index in orders" :key="order.id" class="col-12 order-row " :class="{
+            <div v-for="order, index in orders" :key="order.id" class="col-12 order-row p-0" :class="{
                     'light-gray': index % 2 == 0,
                     'bg-light': index % 2 == 1
                 }">
@@ -114,7 +114,7 @@ export default {
 }
 
 .light-gray {
-    background-color: lightblue;
+    background-color: #E5E7E9;
 }
 
 a:focus {

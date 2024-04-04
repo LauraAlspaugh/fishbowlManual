@@ -22,9 +22,13 @@
 
         </div>
         <div v-if="order">
-            <div class=" part-line d-flex justify-content-evenly m-3 " v-for="part in parts" :key="part.id">
-                <div class="col-4">
-                    {{ part.description }}
+            <div class=" part-line d-flex justify-content-evenly  p-0 " v-for="part, index in parts" :key="part.id"
+                :class="{
+                    'light-gray': index % 2 == 0,
+                    'bg-light': index % 2 == 1
+                }">
+                <div class="col-4 m-3">
+                    <i class="mdi mdi-cog-outline"></i> {{ part.description }}
                 </div>
                 <div class="col-2">
                     {{ part.partNumber }}
@@ -117,11 +121,15 @@ export default {
 <style lang="scss" scoped>
 .part-line {
     align-items: center;
-    border-bottom: 1px solid black;
-    border-top: 1px solid black;
+    // border-bottom: 1px solid black;
+    // border-top: 1px solid black;
 }
 
 .order-row {
     align-items: center;
+}
+
+.light-gray {
+    background-color: #E5E7E9;
 }
 </style>
