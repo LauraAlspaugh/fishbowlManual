@@ -3,6 +3,7 @@
         <div class="order-row d-flex justify-content-between">
             <div class="col-6">
 
+
                 <p v-if="!order" role="button" @click="setActiveOrder(orderProp)" class="order-name"> <i
                         class="mdi mdi-menu-right fs-2 "></i>
                     {{ orderProp.description }}</p>
@@ -30,7 +31,7 @@
                 <div class="col-4 m-3">
                     <i class="mdi mdi-cog-outline"></i> {{ part.description }}
                 </div>
-                <div class="col-2">
+                <div class="col-2 part-number">
                     {{ part.partNumber }}
                 </div>
                 <div class="col-2">
@@ -131,5 +132,9 @@ export default {
 
 .light-gray {
     background-color: #E5E7E9;
+}
+
+.part-number {
+    color: #3498DB;
 }
 </style>
