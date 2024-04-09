@@ -1,7 +1,7 @@
 import React from "react"
 
 export default function Profile() {
-    const message = 'hello World! Welcome to React Learning.'
+    const message = 'Hello World! Welcome to React Learning.'
     return (
         <div
         style={{
