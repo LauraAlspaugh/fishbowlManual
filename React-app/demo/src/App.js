@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import Profile from './Profile.tsx';
+import Picture from './Picture.tsx';
 
 
 
@@ -10,7 +11,7 @@ function App() {
     <div>
      
       <Profile/>
-
+<Picture/>
      
     </div>
   );
