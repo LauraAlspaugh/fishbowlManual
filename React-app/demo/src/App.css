@@ -1,15 +1,20 @@
 .profile{
-  height: 300px;
-  width: 300px;
-  object-fit: cover;
-  position: center;
+  color: pink;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 40px;
+  display: flex;
+  justify-content: center;
 }
 .martini{
   height: 300px;
-  width: 300px;
   object-fit: cover;
   position: center;
-  padding: 3px;
-  justify-content: center;
-  display: flex;
+  border-radius: 5px;
+  border: 2px solid gray;
+  text-align: center;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    width: 30%;
 }
