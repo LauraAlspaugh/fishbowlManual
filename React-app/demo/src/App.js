@@ -9,8 +9,8 @@ function App() {
 
   return (
     <div className='page'>
-      <nav className='navbar'>
-        <img className='image' alt='react' src="../logo192.png"></img>
+      <nav>
+        <img className='image' alt='react' src="../logo192.png"/>
         <h1 className='react-facts'>ReactFacts</h1>
         <h2 className='project'>React Course - Project 1</h2>
       </nav>

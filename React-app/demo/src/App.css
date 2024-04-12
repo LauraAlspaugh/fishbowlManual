@@ -26,24 +26,29 @@ li{
   padding-block: 10px;
  
 }
+li::marker{
+  font-size: 1.4rem;
+  color: #61DAFB;
+}
 .list{
 color: blue;
 }
 body{
   background-color: #282D35;
+  margin: 0;
 }
 
-.navbar{
-  height: 90px;
-  display: flex; 
-  align-items: center;
-  padding: 30px 25px;
+nav{
   box-shadow: 0px 2px 3px darkgray;
-  background-color: black;
+  display: flex;
+    align-items: center;
+    background-color: #21222A;
+    height: 90px;
+    padding: 30px 25px;
   
 }
 .react-facts{
-  color: #0dcaf0;
+  color:  #61DAFB;
   margin-right: auto;
 }
 .project{
@@ -57,6 +62,11 @@ body{
 }
 main{
 padding: 57px 27px;
+background-image: url("../public/logo512.png");
+background-repeat: no-repeat;
+background-position-x: right;
+background-position-y: 75%;
+
 }
 
 .modal {
